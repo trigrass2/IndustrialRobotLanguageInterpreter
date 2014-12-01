@@ -1,0 +1,140 @@
+/*
+ * Definition of the Abstract Syntax data structure components
+ */
+
+
+/*
+ * ABSYNTAX.DEF
+ *
+ * This generates the parse tree structure used to bind the components
+ * identified by Bison in the correct syntax order. At the end of the
+ * Bison analysis the tree is walked in a sequential fashion generating
+ * the relavent code.
+ */
+
+
+/***************************/
+/* B 0 - Programming Model */
+/***************************/
+SYM_LIST(library_c)
+
+/*******************************************/
+/* B 1.1 - Letters, digits and identifiers */
+/*******************************************/
+SYM_TOKEN(identifier_c)
+
+/*********************/
+/* B 1.2 - Constants */
+/*********************/
+
+/******************************/
+/* B 1.2.1 - Numeric Literals */
+/******************************/
+SYM_TOKEN(real_c)
+SYM_TOKEN(integer_c)
+SYM_TOKEN(binary_integer_c)
+SYM_TOKEN(octal_integer_c)
+SYM_TOKEN(hex_integer_c)
+
+SYM_REF2(numeric_literal_c, type, value)
+SYM_REF2(integer_literal_c, type, value)
+SYM_REF2(real_literal_c, type, value)
+SYM_REF2(bit_string_literal_c, type, value)
+SYM_REF2(boolean_literal_c, type, value)
+/* helper class for boolean_literal_c */
+SYM_REF0(boolean_true_c)
+/* helper class for boolean_literal_c */
+SYM_REF0(boolean_false_c)
+
+
+
+
+/*******************************/
+/* B.1.2.2   Character Strings */
+/*******************************/
+SYM_TOKEN(character_string_c)
+
+/**********************/
+/* B.1.3 - Data types */
+/**********************/
+/***********************************/
+/* B 1.3.1 - Elementary Data Types */
+/***********************************/
+SYM_REF0(bool_type_name_c)
+SYM_REF0(real_type_name_c)
+SYM_REF0(dint_type_name_c)
+SYM_REF0(dword_type_name_c)
+SYM_REF0(string_type_name_c)
+
+/***********************************/
+/* B 1.3.2 - Robot Data Types */
+/***********************************/
+SYM_REF0(axispos_type_name_c)
+SYM_REF0(cartpos_type_name_c)
+SYM_REF0(axisposext_type_name_c)
+SYM_REF0(cartposext_type_name_c)
+SYM_REF0(robaxispos_type_name_c)
+SYM_REF0(auxaxispos_type_name_c)
+SYM_REF0(robcartpos_type_name_c)
+SYM_REF0(worldrefsys_type_name_c)
+SYM_REF0(cartrefsys_type_name_c)
+SYM_REF0(cartrefsysext_type_name_c)
+SYM_REF0(cartrefsysaxis_type_name_c)
+SYM_REF0(tool_type_name_c)
+SYM_REF0(toolstatic_type_name_c)
+SYM_REF0(ovlrel_type_name_c)
+SYM_REF0(ovlabs_type_name_c)
+SYM_REF0(dynamic_type_name_c)
+SYM_REF0(percent_type_name_c)
+SYM_REF0(perc200_type_name_c)
+
+
+/********************************/
+/* B 1.3.3 - Derived data types */
+/********************************/
+
+/*  simple_type_name ':' simple_spec_init */
+SYM_REF2(basic_type_declaration_c, simple_type_name, simple_spec_init)
+/* simple_specification ASSIGN constant */
+SYM_REF2(simple_spec_init_c, simple_specification, constant)
+
+/*  structure_type_name ':' structure_specification */
+SYM_REF2(structure_type_declaration_c, structure_type_name, structure_specification)
+/* helper symbol for structure_declaration */
+/* structure_declaration:  STRUCT structure_element_declaration_list END_STRUCT */
+/* structure_element_declaration_list structure_element_declaration ';' */
+SYM_LIST(structure_element_initialization_list_c)
+/*  structure_element_name ':' *_spec_init */
+SYM_REF2(structure_element_initialization_c, structure_element_name, value)
+
+/***********************/
+/* B 2.1 - Expressions */
+/***********************/
+
+SYM_REF2(neg_expression_c, exp, unused)
+
+/***********************/
+/* B  - Add later on 2014-11-27 */
+/***********************/
+SYM_LIST(var_declarations_list_c)
+SYM_REF2(var1_init_decl_c, var1_list, spec_init)
+SYM_LIST(var1_list_c)
+SYM_REF2(structured_var_init_decl_c, var1_list, initialized_structure)
+SYM_REF2(initialized_structure_c, structure_type_name, structure_initialization) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

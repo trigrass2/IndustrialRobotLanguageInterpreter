@@ -1,0 +1,12 @@
+##########################################
+#                                        # 
+#  Set the Linux Specific constants...   #
+#                                        #
+##########################################
+
+
+# Sepcify which compiler and other tools to use
+CC  = gcc
+CXX = g++
+AR  = ar
+LIBTOOL = libtool

@@ -1,0 +1,175 @@
+/*
+ * Definition of the Abstract Syntax data structure components
+ */
+
+
+/*
+ * ABSYNTAX.DEF
+ *
+ * This generates the parse tree structure used to bind the components
+ * identified by Bison in the correct syntax order. At the end of the
+ * Bison analysis the tree is walked in a sequential fashion generating
+ * the relavent code.
+ */
+/*************************/
+/* B.1 - Common elements */
+/*************************/
+/*******************************************/
+/* B 1.1 - Letters, digits and identifiers */
+/*******************************************/
+SYM_TOKEN(identifier_c)
+
+/*********************/
+/* B 1.2 - Constants */
+/*********************/
+
+/******************************/
+/* B 1.2.1 - Numeric Literals */
+/******************************/
+SYM_TOKEN(real_c)
+SYM_TOKEN(integer_c)
+SYM_TOKEN(binary_integer_c)
+SYM_TOKEN(octal_integer_c)
+SYM_TOKEN(hex_integer_c)
+
+SYM_REF2(numeric_literal_c, type, value)
+SYM_REF2(integer_literal_c, type, value)
+SYM_REF2(real_literal_c, type, value)
+SYM_REF2(bit_string_literal_c, type, value)
+SYM_REF2(boolean_literal_c, type, value)
+/* helper class for boolean_literal_c */
+SYM_REF0(boolean_true_c)
+/* helper class for boolean_literal_c */
+SYM_REF0(boolean_false_c)
+
+
+/*******************************/
+/* B.1.2.2   Character Strings */
+/*******************************/
+SYM_TOKEN(character_string_c)
+
+/**********************/
+/* B.1.3 - Data types */
+/**********************/
+/***********************************/
+/* B 1.3.1 - Elementary Data Types */
+/***********************************/
+SYM_REF0(bool_type_name_c)
+SYM_REF0(real_type_name_c)
+SYM_REF0(dint_type_name_c)
+SYM_REF0(dword_type_name_c)
+SYM_REF0(string_type_name_c)
+
+/*********************/
+/* B 1.4 - Variables */
+/*********************/
+SYM_REF2(symbolic_variable_c, var_name, unused)
+
+
+/***********************/
+/* B 2.1 - Expressions */
+/***********************/
+SYM_REF2(or_expression_c, l_exp, r_exp)
+SYM_REF2(xor_expression_c, l_exp, r_exp)
+SYM_REF2(and_expression_c, l_exp, r_exp)
+SYM_REF2(equ_expression_c, l_exp, r_exp)
+SYM_REF2(notequ_expression_c, l_exp, r_exp)
+SYM_REF2(lt_expression_c, l_exp, r_exp)
+SYM_REF2(gt_expression_c, l_exp, r_exp)
+SYM_REF2(le_expression_c, l_exp, r_exp)
+SYM_REF2(ge_expression_c, l_exp, r_exp)
+SYM_REF2(add_expression_c, l_exp, r_exp)
+SYM_REF2(sub_expression_c, l_exp, r_exp)
+SYM_REF2(mul_expression_c, l_exp, r_exp)
+SYM_REF2(div_expression_c, l_exp, r_exp)
+SYM_REF2(neg_expression_c, exp, unused)
+SYM_REF2(not_expression_c, exp, unused)
+
+/* math functions */
+SYM_REF2(function_invocation_c, function_name, parameter_assignment_list)
+SYM_REF0(sin_type_name_c)
+SYM_REF0(cos_type_name_c)
+
+/***************************/
+/* B 2.2 - Statements      */
+/***************************/
+SYM_LIST(statement_list_c)
+
+/*********************************/
+/* B 2.2.1 Assignment Statements */
+/*********************************/
+SYM_REF2(assignment_statement_c, l_exp, r_exp)
+
+/*****************************************/
+/* B 2.2.2 Subprogram Control Statements */
+/*****************************************/
+SYM_REF2(subprogram_invocation_c, subprogram_name, unused)
+
+/********************************/
+/* B 2.2.3 Selection Statements */
+/********************************/
+/* IF expression THEN statement_list elseif_statement_list ELSE statement_list END_IF */
+SYM_REF4(if_statement_c, expression, statement_list, elseif_statement_list, else_statement_list)
+
+/* helper symbol for if_statement */
+SYM_LIST(elseif_statement_list_c)
+
+/* helper symbol for elseif_statement_list */
+/* ELSIF expression THEN statement_list    */
+SYM_REF2(elseif_statement_c, expression, statement_list)
+
+/********************************/
+/* B 2.2.4 Iteration Statements */
+/********************************/
+/*  WHILE expression DO statement_list END_WHILE */
+SYM_REF2(while_statement_c, expression, statement_list)
+/*  LOOP const_expression DO statement_list END_LOOP */
+SYM_REF2(loop_statement_c,const_expression,statement_list)
+
+/********************************/
+/* B 2.2.5 Robot  Statements */
+/********************************/
+SYM_REF0(ptp_type_name_c)
+SYM_REF0(lin_type_name_c)
+SYM_REF0(circ_type_name_c)
+
+SYM_REF0(dyn_type_name_c)
+SYM_REF0(dynovr_type_name_c)
+SYM_REF0(ovl_type_name_c)
+SYM_REF0(ramp_type_name_c)
+SYM_REF0(refsys_type_name_c)
+SYM_REF0(tool_type_name_c)
+SYM_REF0(orimode_type_name_c)
+
+SYM_REF0(waittime_type_name_c)
+SYM_REF0(stop_type_name_c)
+SYM_REF0(info_type_name_c)
+SYM_REF0(warning_type_name_c)
+SYM_REF0(error_type_name_c)
+
+/********************************/
+/* B 2.2.6 param_assignment_list */
+/********************************/
+
+SYM_LIST(param_assignment_list_c)
+
+
+/********************************/
+/* B Add later on 2014-11-27 */
+/********************************/
+
+SYM_REF2(robot_instruction_invocation_c, robot_instruction_name, parameter_assignment_list)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
