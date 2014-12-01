@@ -1,0 +1,18 @@
+#ignore all files that end with a tilde(~)
+*~       
+
+#Compiled Object files
+*.o
+*.obj
+
+#Compiled Dynamic libraries
+*.so
+*.dll
+
+#Compiled Static libraries
+*.a
+*.lib
+
+#Executables
+*.exe
+*.out
